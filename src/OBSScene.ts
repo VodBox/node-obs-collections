@@ -82,8 +82,8 @@ const Scene = function (this: Scene, data?: Partial<IScene>) {
 	prox.settings.items.forEach((item) => {
 		const sItem = CreateSceneItem(this, item);
 		sItem.hotkeys = {
-			hide: prox.hotkeys[`libobs.hide_scene_item.${item.id}`],
-			show: prox.hotkeys[`libobs.show_scene_item.${item.id}`],
+			hide: prox.hotkeys[`libobs.hide_scene_item.${item.id}`] ?? [],
+			show: prox.hotkeys[`libobs.show_scene_item.${item.id}`] ?? [],
 		};
 		testSceneItem(sItem);
 		sceneItems.push(sItem);
