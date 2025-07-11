@@ -1,0 +1,31 @@
+{
+  "name": "obs-collections",
+  "version": "1.0.0",
+  "description": "JavaScript library for interacting with and modifying OBS Studio scene collections",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "scripts": {
+    "build:cjs": "tsc",
+    "build:es": "tsc -m esNext --outDir esm --target es2018",
+    "build": "npm run build:cjs && npm run build:es",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VodBox/node-obs-collections.git"
+  },
+  "author": "VodBox (Dillon Pentz)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VodBox/node-obs-collections/issues"
+  },
+  "homepage": "https://github.com/VodBox/node-obs-collections#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^18.19.118",
+    "typescript": "^5.8.3"
+  }
+}

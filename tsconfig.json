@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"target": "ES5",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"declaration": true,
+		"pretty": true,
+		"rootDir": "src",
+		"sourceMap": false,
+		"strict": true,
+		"strictNullChecks": true,
+		"esModuleInterop": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noImplicitAny": true,
+		"outDir": "lib",
+		"lib": ["es2015"],
+		"typeRoots": ["node_modules/@types"]
+	},
+	"exclude": ["node_modules", "lib", "esm"],
+	"include": ["src/**/*"]
+}
