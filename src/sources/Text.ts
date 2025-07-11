@@ -21,7 +21,12 @@ export enum Antialiasing {
 
 export type ITextGDISource = {
 	settings: {
-		font?: string;
+		font?: {
+			face: string;
+			flags: number;
+			size: number;
+			style: string;
+		};
 
 		text?: string;
 
@@ -133,7 +138,12 @@ TextGDISource.prototype = Object.create(Source.prototype);
 
 export type ITextFT2Source = {
 	settings: {
-		font?: string;
+		font?: {
+			face: string;
+			flags: number;
+			size: number;
+			style: string;
+		};
 
 		text?: string;
 
@@ -250,3 +260,4 @@ const TextFT2Source = function (
 TextFT2Source.prototype = Object.create(Source.prototype);
 
 export { TextGDISource, TextGDISource as TextSource, TextFT2Source };
+
