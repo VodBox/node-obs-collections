@@ -35,7 +35,7 @@ const defaultVLCSource: IVLCSource = {
 	id: "vlc_source",
 };
 
-interface VLCSource extends AudioSource<IVLCSource> {}
+type VLCSource = AudioSource<IVLCSource>;
 
 const VLCSource = function (this: VLCSource, data?: Partial<IVLCSource>) {
 	const prox = AudioSourceSuper(this, {

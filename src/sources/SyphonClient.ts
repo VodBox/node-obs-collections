@@ -30,11 +30,11 @@ const defaultSyphonSource: ISyphonClientSource = {
 	id: "syphon-input",
 };
 
-interface SyphonClientSource extends Source<ISyphonClientSource> {}
+type SyphonClientSource = Source<ISyphonClientSource>;
 
 const SyphonClientSource = function (
 	this: SyphonClientSource,
-	data?: Partial<ISyphonClientSource>
+	data?: Partial<ISyphonClientSource>,
 ) {
 	const prox = SourceSuper(this, {
 		...defaultSyphonSource,

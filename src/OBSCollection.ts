@@ -80,8 +80,8 @@ interface SceneCollection extends ISceneCollection {
 
 	createSource<K extends SourceKey>(
 		id: K,
-		data?: ConstructorParameters<typeof SourceMap[K]>[0]
-	): InstanceType<typeof SourceMap[K]>;
+		data?: ConstructorParameters<(typeof SourceMap)[K]>[0],
+	): InstanceType<(typeof SourceMap)[K]>;
 	createSource<T extends ISource>(id: string, data?: Partial<T>): Source<T>;
 	createScene(data?: Partial<IScene>): Scene;
 
@@ -95,7 +95,7 @@ interface SceneCollectionConstructor {
 
 const SceneCollection = function (
 	this: SceneCollection,
-	data?: Partial<ISceneCollection>
+	data?: Partial<ISceneCollection>,
 ) {
 	const rawData = cloneDeep({
 		...defaultCollection,
@@ -177,11 +177,11 @@ const SceneCollection = function (
 
 	scenes.sort((a, b) => {
 		const aIdx = rawData.scene_order.findIndex(
-			(order) => order.name === a.name
+			(order) => order.name === a.name,
 		);
 
 		const bIdx = rawData.scene_order.findIndex(
-			(order) => order.name === b.name
+			(order) => order.name === b.name,
 		);
 
 		return aIdx - bIdx;
@@ -217,23 +217,18 @@ const SceneCollection = function (
 	};
 
 	return createProxy(rawData, {
-		get: (_target: any, prop: string | symbol, _receiver: any) => {
+		get: (_target: any, prop: string | symbol) => {
 			if (prop in this) return this[prop as keyof SceneCollection];
 			return rawData[prop as keyof ISceneCollection];
 		},
-		set: (
-			_target: any,
-			prop: string | symbol,
-			value: any,
-			_receiver: any
-		) => {
+		set: (_target: any, prop: string | symbol, value: any) => {
 			if (prop in this) {
-				/* @ts-ignore */
+				/* @ts-expect-error(reaching into internal data) */
 				this[prop as keyof SceneCollection] = value;
 				return true;
 			}
 
-			/* @ts-ignore */
+			/* @ts-expect-error(reaching into internal data) */
 			rawData[prop as keyof ISceneCollection] = value;
 			return true;
 		},
@@ -243,7 +238,7 @@ const SceneCollection = function (
 SceneCollection.prototype.createSource = function <T extends ISource>(
 	this: SceneCollection,
 	id: string,
-	data?: Partial<T>
+	data?: Partial<T>,
 ): Source {
 	let name = data?.name ?? "Source";
 	let iter = 0;
@@ -252,7 +247,7 @@ SceneCollection.prototype.createSource = function <T extends ISource>(
 
 	while (
 		sources.some(
-			(source) => source.name === name + (iter ? ` ${iter + 1}` : "")
+			(source) => source.name === name + (iter ? ` ${iter + 1}` : ""),
 		)
 	) {
 		++iter;
@@ -285,7 +280,7 @@ SceneCollection.prototype.createSource = function <T extends ISource>(
 
 SceneCollection.prototype.createScene = function (
 	this: SceneCollection,
-	data: Partial<IScene>
+	data: Partial<IScene>,
 ): Source {
 	const scene = new Scene(data);
 	scene.addToCollection(this);

@@ -42,7 +42,7 @@ ColorSource.prototype.setRGBA = function (
 	red: number,
 	green: number,
 	blue: number,
-	alpha: number
+	alpha: number,
 ) {
 	const rawData = this.toJSON();
 

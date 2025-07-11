@@ -48,11 +48,11 @@ const defaultGameSource: IGameCaptureSource = {
 	id: "game_capture",
 };
 
-interface GameCaptureSource extends Source<IGameCaptureSource> {}
+type GameCaptureSource = Source<IGameCaptureSource>;
 
 const GameCaptureSource = function (
 	this: GameCaptureSource,
-	data?: Partial<IGameCaptureSource>
+	data?: Partial<IGameCaptureSource>,
 ) {
 	const prox = SourceSuper(this, {
 		...defaultGameSource,

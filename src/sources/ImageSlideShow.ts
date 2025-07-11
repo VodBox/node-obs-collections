@@ -51,11 +51,11 @@ const defaultSlideshowSource: ISlideshowSource = {
 	id: "slideshow",
 };
 
-interface SlideshowSource extends Source<ISlideshowSource> {}
+type SlideshowSource = Source<ISlideshowSource>;
 
 const SlideshowSource = function (
 	this: SlideshowSource,
-	data?: Partial<ISlideshowSource>
+	data?: Partial<ISlideshowSource>,
 ) {
 	const prox = SourceSuper(this, {
 		...defaultSlideshowSource,

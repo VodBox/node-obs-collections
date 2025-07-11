@@ -84,13 +84,13 @@ interface TextGDISource extends Source<ITextGDISource> {
 		red2: number,
 		green2: number,
 		blue2: number,
-		direction?: number
+		direction?: number,
 	): void;
 }
 
 const TextGDISource = function (
 	this: TextGDISource,
-	data?: Partial<ITextGDISource>
+	data?: Partial<ITextGDISource>,
 ) {
 	const prox = SourceSuper(this, {
 		...defaultTextGDISource,
@@ -113,7 +113,7 @@ const TextGDISource = function (
 		red2,
 		green2,
 		blue2,
-		direction = 0
+		direction = 0,
 	) => {
 		const hexRed1 = Math.round(clamp(red1, 0, 255));
 		const hexGreen1 = Math.round(clamp(green1, 0, 255));
@@ -184,7 +184,7 @@ interface TextFT2Source extends Source<ITextGDISource> {
 		blue1: number,
 		red2: number,
 		green2: number,
-		blue2: number
+		blue2: number,
 	): void;
 	setGradient(
 		red1: number,
@@ -194,13 +194,13 @@ interface TextFT2Source extends Source<ITextGDISource> {
 		red2: number,
 		green2: number,
 		blue2: number,
-		alpha2: number
+		alpha2: number,
 	): void;
 }
 
 const TextFT2Source = function (
 	this: TextFT2Source,
-	data?: Partial<ITextFT2Source>
+	data?: Partial<ITextFT2Source>,
 ) {
 	const prox = SourceSuper(this, {
 		...defaultTextFT2Source,
@@ -228,7 +228,7 @@ const TextFT2Source = function (
 		red2,
 		green2,
 		blue2?: number,
-		alpha2?: number
+		alpha2?: number,
 	) => {
 		if (blue2 === undefined || alpha2 === undefined) {
 			alpha2 = 255;
@@ -260,4 +260,3 @@ const TextFT2Source = function (
 TextFT2Source.prototype = Object.create(Source.prototype);
 
 export { TextGDISource, TextGDISource as TextSource, TextFT2Source };
-

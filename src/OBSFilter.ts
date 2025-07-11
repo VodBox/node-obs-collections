@@ -37,7 +37,7 @@ export const defaultFilter: IFilter = {
 type Filter<T extends IFilter = IFilter> = Omit<Source<T>, "filters">;
 
 const Filter = function <T extends IFilter>(this: Filter, data?: T) {
-	/* @ts-ignore */
+	/* @ts-expect-error(This kind of indirect call blows up TS for some reason.) */
 	return Source.call(this, data) as Filter<T>;
 } as unknown as PartialSourceConstructor<IFilter, Filter>;
 
@@ -47,9 +47,9 @@ export { Filter };
 
 export const FilterSuper = function <T extends IFilter>(
 	thisArg: Filter<T>,
-	data: T
+	data: T,
 ) {
-	/* @ts-ignore */
+	/* @ts-expect-error(This kind of indirect call blows up TS for some reason.) */
 	return Filter.call(thisArg, data) as Filter<T>;
 };
 

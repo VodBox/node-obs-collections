@@ -27,11 +27,11 @@ const defaultWinDisplaySource: IWinDisplayCaptureSource = {
 	id: "monitor_capture",
 };
 
-interface WinDisplayCaptureSource extends Source<IWinDisplayCaptureSource> {}
+type WinDisplayCaptureSource = Source<IWinDisplayCaptureSource>;
 
 const WinDisplayCaptureSource = function (
 	this: WinDisplayCaptureSource,
-	data?: Partial<IWinDisplayCaptureSource>
+	data?: Partial<IWinDisplayCaptureSource>,
 ) {
 	const prox = SourceSuper(this, {
 		...defaultWinDisplaySource,
@@ -79,11 +79,11 @@ const defaultMacDisplaySource: IMacDisplayCaptureSource = {
 	id: "display_capture",
 };
 
-interface MacDisplayCaptureSource extends Source<IMacDisplayCaptureSource> {}
+type MacDisplayCaptureSource = Source<IMacDisplayCaptureSource>;
 
 const MacDisplayCaptureSource = function (
 	this: MacDisplayCaptureSource,
-	data?: Partial<IMacDisplayCaptureSource>
+	data?: Partial<IMacDisplayCaptureSource>,
 ) {
 	const prox = SourceSuper(this, {
 		...defaultMacDisplaySource,
@@ -103,11 +103,11 @@ const defaultPipeWireDisplaySource: IPipeWireSource = {
 	id: "pipewire-desktop-capture-source",
 };
 
-interface PipeWireDisplayCaptureSource extends Source<IPipeWireSource> {}
+type PipeWireDisplayCaptureSource = Source<IPipeWireSource>;
 
 const PipeWireDisplayCaptureSource = function (
 	this: PipeWireDisplayCaptureSource,
-	data?: Partial<IPipeWireSource>
+	data?: Partial<IPipeWireSource>,
 ) {
 	const prox = SourceSuper(this, {
 		...defaultPipeWireDisplaySource,
@@ -143,11 +143,11 @@ const defaultXSHMDisplaySource: IXSHMDisplayCaptureSource = {
 	id: "xshm_input",
 };
 
-interface XSHMDisplayCaptureSource extends Source<IXSHMDisplayCaptureSource> {}
+type XSHMDisplayCaptureSource = Source<IXSHMDisplayCaptureSource>;
 
 const XSHMDisplayCaptureSource = function (
 	this: XSHMDisplayCaptureSource,
-	data?: Partial<IXSHMDisplayCaptureSource>
+	data?: Partial<IXSHMDisplayCaptureSource>,
 ) {
 	const prox = SourceSuper(this, {
 		...defaultXSHMDisplaySource,

@@ -43,7 +43,7 @@ interface ColorKeyFilter extends Filter<IColorKeyFilter> {
 
 const ColorKeyFilter = function (
 	this: ColorKeyFilter,
-	data?: Partial<IColorKeyFilter>
+	data?: Partial<IColorKeyFilter>,
 ) {
 	const prox = FilterSuper(this, {
 		...defaultColorKeyFilter,
@@ -59,7 +59,7 @@ ColorKeyFilter.prototype.setKeyColor = function (
 	this: ColorKeyFilter,
 	first: KeyColorType | number,
 	green?: number,
-	blue?: number
+	blue?: number,
 ) {
 	const rawData = this.toJSON();
 

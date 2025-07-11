@@ -66,7 +66,7 @@ const Scene = function (this: Scene, data?: Partial<IScene>) {
 
 	this.idCounter = prox.settings.items.reduce(
 		(prev, item) => Math.max(prev, item.id + 1),
-		0
+		0,
 	);
 
 	const testSceneItem = (item: SceneItem) => {
@@ -92,7 +92,7 @@ const Scene = function (this: Scene, data?: Partial<IScene>) {
 	Object.defineProperty(this, "sceneItems", {
 		get: () => {
 			return createProxy(sceneItems, {
-				set: (target, prop, value: SceneItem, _receiver) => {
+				set: (target, prop, value: SceneItem) => {
 					testSceneItem(value);
 					target[prop as unknown as number] = value;
 					return true;
@@ -125,12 +125,17 @@ const Scene = function (this: Scene, data?: Partial<IScene>) {
 
 		rawData.hotkeys = {
 			"OBSBasic.SelectScene": rawData.hotkeys["OBSBasic.SelectScene"],
-			...sceneItems.reduce((prev, curr) => {
-				prev[`libobs.hide_scene_item.${curr.name}`] = curr.hotkeys.hide;
-				prev[`libobs.show_scene_item.${curr.name}`] = curr.hotkeys.show;
+			...sceneItems.reduce(
+				(prev, curr) => {
+					prev[`libobs.hide_scene_item.${curr.name}`] =
+						curr.hotkeys.hide;
+					prev[`libobs.show_scene_item.${curr.name}`] =
+						curr.hotkeys.show;
 
-				return prev;
-			}, {} as Record<string, IHotkey[]>),
+					return prev;
+				},
+				{} as Record<string, IHotkey[]>,
+			),
 		};
 
 		return parentJSON.call(this);
@@ -154,7 +159,7 @@ Scene.prototype.addSource = function (this: Scene, source: Source): SceneItem {
 
 Scene.prototype.duplicateSceneItem = function (
 	this: Scene,
-	item: SceneItem
+	item: SceneItem,
 ): SceneItem {
 	const newItem = CreateSceneItem(this, {
 		...cloneDeep(item.toJSON()),
@@ -283,17 +288,12 @@ const SceneItem = function (this: SceneItem, scene: Scene, data: ISceneItem) {
 		hotkeys: {
 			get: () => {
 				return createProxy(hotkeys, {
-					set: (
-						_target: any,
-						prop: string | symbol,
-						value: any,
-						_receiver
-					) => {
+					set: (_target: any, prop: string | symbol, value: any) => {
 						if (prop === "show") {
 							hotkeys.show.splice(
 								0,
 								hotkeys.show.length,
-								...(value as IHotkey[])
+								...(value as IHotkey[]),
 							);
 							return true;
 						}
@@ -302,7 +302,7 @@ const SceneItem = function (this: SceneItem, scene: Scene, data: ISceneItem) {
 							hotkeys.hide.splice(
 								0,
 								hotkeys.hide.length,
-								...(value as IHotkey[])
+								...(value as IHotkey[]),
 							);
 							return true;
 						}
@@ -326,24 +326,19 @@ const SceneItem = function (this: SceneItem, scene: Scene, data: ISceneItem) {
 	this.toJSON = () => rawData;
 
 	return createProxy(rawData, {
-		get: (_target: any, prop: string | symbol, _receiver: any) => {
+		get: (_target: any, prop: string | symbol) => {
 			if (prop in this) return this[prop as keyof SceneItem];
 			return rawData[prop as keyof ISceneItem];
 		},
-		set: (
-			_target: any,
-			prop: string | symbol,
-			value: any,
-			_receiver: any
-		) => {
+		set: (_target: any, prop: string | symbol, value: any) => {
 			if (prop in this) {
-				/* @ts-ignore */
-				this[prop as keyof SceneItem] = value;
+				/* @ts-expect-error(reaching into internal data) */
+				this[prop as keyof typeof SceneItem] = value;
 				return true;
 			}
 
-			/* @ts-ignore */
-			rawData[prop as keyof ISceneItem] = value;
+			/* @ts-expect-error(reaching into internal data) */
+			rawData[prop as ISceneItem[string]] = value;
 			return true;
 		},
 	});

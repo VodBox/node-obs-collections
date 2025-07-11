@@ -14,12 +14,11 @@ const defaultWinAudioInputSource: IWinAudioCaptureSource = {
 	id: "wasapi_input_capture",
 };
 
-interface WinAudioInputCaptureSource
-	extends AudioSource<IWinAudioCaptureSource> {}
+type WinAudioInputCaptureSource = AudioSource<IWinAudioCaptureSource>;
 
 const WinAudioInputCaptureSource = function (
 	this: WinAudioInputCaptureSource,
-	data?: Partial<IWinAudioCaptureSource>
+	data?: Partial<IWinAudioCaptureSource>,
 ) {
 	const prox = AudioSourceSuper(this, {
 		...defaultWinAudioInputSource,
@@ -39,12 +38,11 @@ const defaultMacAudioInputSource: IMacAudioCaptureSource = {
 	id: "coreaudio_input_capture",
 };
 
-interface MacAudioInputCaptureSource
-	extends AudioSource<IMacAudioCaptureSource> {}
+type MacAudioInputCaptureSource = AudioSource<IMacAudioCaptureSource>;
 
 const MacAudioInputCaptureSource = function (
 	this: MacAudioInputCaptureSource,
-	data?: Partial<IMacAudioCaptureSource>
+	data?: Partial<IMacAudioCaptureSource>,
 ) {
 	const prox = AudioSourceSuper(this, {
 		...defaultMacAudioInputSource,
@@ -64,12 +62,11 @@ const defaultPulseAudioInputSource: IPulseAudioCaptureSource = {
 	id: "pulse_input_capture",
 };
 
-interface PulseAudioInputCaptureSource
-	extends AudioSource<IPulseAudioCaptureSource> {}
+type PulseAudioInputCaptureSource = AudioSource<IPulseAudioCaptureSource>;
 
 const PulseAudioInputCaptureSource = function (
 	this: PulseAudioInputCaptureSource,
-	data?: Partial<IPulseAudioCaptureSource>
+	data?: Partial<IPulseAudioCaptureSource>,
 ) {
 	const prox = AudioSourceSuper(this, {
 		...defaultPulseAudioInputSource,
@@ -103,12 +100,11 @@ const defaultALSAInputSource: IALSAAudioInputCaptureSource = {
 	id: "alsa_input_capture",
 };
 
-interface ALSAAudioInputCaptureSource
-	extends AudioSource<IALSAAudioInputCaptureSource> {}
+type ALSAAudioInputCaptureSource = AudioSource<IALSAAudioInputCaptureSource>;
 
 const ALSAAudioInputCaptureSource = function (
 	this: ALSAAudioInputCaptureSource,
-	data?: Partial<IALSAAudioInputCaptureSource>
+	data?: Partial<IALSAAudioInputCaptureSource>,
 ) {
 	const prox = AudioSourceSuper(this, {
 		...defaultALSAInputSource,

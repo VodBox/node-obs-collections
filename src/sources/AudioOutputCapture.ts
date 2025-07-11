@@ -2,8 +2,8 @@ import {
 	defaultAudioSource,
 	PartialSourceConstructor,
 	IAudioSource,
- AudioSource,
- AudioSourceSuper,
+	AudioSource,
+	AudioSourceSuper,
 } from "../OBSSource";
 import { IMacAudioCaptureSource } from "./shared/CoreAudio";
 import { IPulseAudioCaptureSource } from "./shared/PulseAudio";
@@ -14,11 +14,11 @@ const defaultWinAudioOutputSource: IWinAudioCaptureSource = {
 	id: "wasapi_output_capture",
 };
 
-interface WinAudioOutputCaptureSource extends AudioSource<IWinAudioCaptureSource> {}
+type WinAudioOutputCaptureSource = AudioSource<IWinAudioCaptureSource>;
 
 const WinAudioOutputCaptureSource = function (
 	this: WinAudioOutputCaptureSource,
-	data?: Partial<IWinAudioCaptureSource>
+	data?: Partial<IWinAudioCaptureSource>,
 ) {
 	const prox = AudioSourceSuper(this, {
 		...defaultWinAudioOutputSource,
@@ -38,11 +38,11 @@ const defaultMacAudioOutputSource: IMacAudioCaptureSource = {
 	id: "coreaudio_output_capture",
 };
 
-interface MacAudioOutputCaptureSource extends AudioSource<IMacAudioCaptureSource> {}
+type MacAudioOutputCaptureSource = AudioSource<IMacAudioCaptureSource>;
 
 const MacAudioOutputCaptureSource = function (
 	this: MacAudioOutputCaptureSource,
-	data?: Partial<IMacAudioCaptureSource>
+	data?: Partial<IMacAudioCaptureSource>,
 ) {
 	const prox = AudioSourceSuper(this, {
 		...defaultMacAudioOutputSource,
@@ -62,12 +62,11 @@ const defaultPulseAudioOutputSource: IPulseAudioCaptureSource = {
 	id: "pulse_output_capture",
 };
 
-interface PulseAudioOutputCaptureSource
-	extends AudioSource<IPulseAudioCaptureSource> {}
+type PulseAudioOutputCaptureSource = AudioSource<IPulseAudioCaptureSource>;
 
 const PulseAudioOutputCaptureSource = function (
 	this: PulseAudioOutputCaptureSource,
-	data?: Partial<IPulseAudioCaptureSource>
+	data?: Partial<IPulseAudioCaptureSource>,
 ) {
 	const prox = AudioSourceSuper(this, {
 		...defaultPulseAudioOutputSource,
@@ -93,12 +92,11 @@ const defaultJACKAudioOutputSource: IJACKAudioOutputCaptureSource = {
 	id: "Jack_output_capture",
 };
 
-interface JACKAudioOutputCaptureSource
-	extends AudioSource<IJACKAudioOutputCaptureSource> {}
+type JACKAudioOutputCaptureSource = AudioSource<IJACKAudioOutputCaptureSource>;
 
 const JACKAudioOutputCaptureSource = function (
 	this: JACKAudioOutputCaptureSource,
-	data?: Partial<IJACKAudioOutputCaptureSource>
+	data?: Partial<IJACKAudioOutputCaptureSource>,
 ) {
 	const prox = AudioSourceSuper(this, {
 		...defaultJACKAudioOutputSource,

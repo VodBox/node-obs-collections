@@ -26,11 +26,11 @@ const defaultColorCorrectionFilter: IColorCorrectionFilter = {
 	versioned_id: "color_filter_v2",
 };
 
-interface ColorCorrectionFilter extends Filter<IColorCorrectionFilter> {}
+type ColorCorrectionFilter = Filter<IColorCorrectionFilter>;
 
 const ColorCorrectionFilter = function (
 	this: ColorCorrectionFilter,
-	data?: Partial<IColorCorrectionFilter>
+	data?: Partial<IColorCorrectionFilter>,
 ) {
 	const prox = FilterSuper(this, {
 		...defaultColorCorrectionFilter,

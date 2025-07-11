@@ -43,7 +43,7 @@ interface ChromaKeyFilter extends Filter<IChromaKeyFilter> {
 
 const ChromaKeyFilter = function (
 	this: ChromaKeyFilter,
-	data?: Partial<IChromaKeyFilter>
+	data?: Partial<IChromaKeyFilter>,
 ) {
 	const prox = FilterSuper(this, {
 		...defaultChromaKeyFilter,
@@ -59,7 +59,7 @@ ChromaKeyFilter.prototype.setKeyColor = function (
 	this: ChromaKeyFilter,
 	first: KeyColorType | number,
 	green?: number,
-	blue?: number
+	blue?: number,
 ) {
 	const rawData = this.toJSON();
 

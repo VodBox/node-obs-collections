@@ -33,19 +33,18 @@ export interface TransitionConstructor {
 	(): void;
 }
 
-/* @ts-ignore */
-interface Transition<T extends ITransition = ITransition> extends T {
+type Transition<T extends ITransition = ITransition> = T & {
 	collection: SceneCollection | null;
 
 	apply(data: Partial<T>): void;
 	toJSON(): T;
 
 	addToCollection(collection: SceneCollection): void;
-}
+};
 
 const Transition = function <T extends ITransition>(
 	this: Transition<T>,
-	data: T
+	data: T,
 ) {
 	const rawData: T = cloneDeep({
 		...defaultTransition,
@@ -59,7 +58,7 @@ const Transition = function <T extends ITransition>(
 	this.toJSON = () => rawData;
 
 	return createProxy(rawData, {
-		get: (_target: any, prop: string | symbol, _receiver: any) => {
+		get: (_target: any, prop: string | symbol) => {
 			if (prop in this) return this[prop as keyof Transition<T>];
 			return rawData[prop as keyof T];
 		},

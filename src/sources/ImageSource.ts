@@ -20,7 +20,7 @@ const defaultImageSource: IImageSource = {
 	id: "image_source",
 };
 
-interface ImageSource extends Source<IImageSource> {}
+type ImageSource = Source<IImageSource>;
 
 const ImageSource = function (this: ImageSource, data?: Partial<IImageSource>) {
 	const prox = SourceSuper(this, {

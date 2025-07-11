@@ -17,11 +17,11 @@ const defaultSharpenFilter: ISharpenFilter = {
 	id: "sharpness_filter",
 };
 
-interface SharpenFilter extends Filter<ISharpenFilter> {}
+type SharpenFilter = Filter<ISharpenFilter>;
 
 const SharpenFilter = function (
 	this: SharpenFilter,
-	data?: Partial<ISharpenFilter>
+	data?: Partial<ISharpenFilter>,
 ) {
 	const prox = FilterSuper(this, {
 		...defaultSharpenFilter,

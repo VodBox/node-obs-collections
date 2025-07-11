@@ -79,7 +79,6 @@ export const defaultSource: ISource = {
 	volume: 1.0,
 };
 
-/* @ts-ignore */
 type Source<T extends ISource = ISource> = T & {
 	collection: SceneCollection | null;
 
@@ -90,7 +89,7 @@ type Source<T extends ISource = ISource> = T & {
 
 	createFilter<K extends FilterKey>(
 		id: K,
-		data?: ConstructorParameters<(typeof FilterMap)[K]>[0]
+		data?: ConstructorParameters<(typeof FilterMap)[K]>[0],
 	): InstanceType<(typeof FilterMap)[K]>;
 	createFilter<T extends IFilter>(id: string, data?: Partial<T>): Filter<T>;
 
@@ -122,18 +121,12 @@ const Source = function <T extends ISource>(this: Source<T>, data: T) {
 	this.toJSON = () => rawData;
 
 	return createProxy(rawData, {
-		get: (_target: any, prop: string | symbol, _receiver: any) => {
+		get: (_target: any, prop: string | symbol) => {
 			if (prop in this) return this[prop as keyof Source<T>];
 			return rawData[prop as keyof T];
 		},
-		set: (
-			_target: any,
-			prop: string | symbol,
-			value: any,
-			_receiver: any
-		) => {
+		set: (_target: any, prop: string | symbol, value: any) => {
 			if (prop in this) {
-				/* @ts-ignore */
 				this[prop as keyof Source<T>] = value;
 				return true;
 			}
@@ -146,7 +139,7 @@ const Source = function <T extends ISource>(this: Source<T>, data: T) {
 
 Source.prototype.addToCollection = function (
 	this: Source,
-	collection: SceneCollection
+	collection: SceneCollection,
 ) {
 	this.collection = collection;
 };
@@ -157,7 +150,7 @@ Source.prototype.exists = function (this: Source) {
 	if (this.collection === null) return false;
 
 	return this.collection.scenes.some((scene) =>
-		scene.sceneItems.some((item) => item.name === rawData.name)
+		scene.sceneItems.some((item) => item.name === rawData.name),
 	);
 };
 
@@ -187,9 +180,9 @@ export const defaultAudioSource: IAudioSource = {
 
 const AudioSource = function <T extends IAudioSource>(
 	this: AudioSource<T>,
-	data?: T
+	data?: T,
 ) {
-	/* @ts-ignore */
+	/* @ts-expect-error(This kind of indirect call blows up TS for some reason.) */
 	return Source.call(this, data) as AudioSource<T>;
 };
 
@@ -290,16 +283,15 @@ export { Source, AudioSource };
 
 export const SourceSuper = function <T extends ISource>(
 	thisArg: Source<T>,
-	data: T
+	data: T,
 ) {
-	/* @ts-ignore */
+	/* @ts-expect-error(This kind of indirect call blows up TS for some reason.) */
 	return Source.call(thisArg, data) as Source<T>;
 };
 
 export const AudioSourceSuper = function <T extends IAudioSource>(
 	thisArg: AudioSource<T>,
-	data: T
+	data: T,
 ) {
-	/* @ts-ignore */
 	return AudioSource.call(thisArg, data) as AudioSource<T>;
 };

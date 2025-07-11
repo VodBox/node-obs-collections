@@ -35,11 +35,11 @@ const defaultWinWindowSource: IWinWindowCaptureSource = {
 	id: "window_capture",
 };
 
-interface WinWindowCaptureSource extends Source<IWinWindowCaptureSource> {}
+type WinWindowCaptureSource = Source<IWinWindowCaptureSource>;
 
 const WinWindowCaptureSource = function (
 	this: WinWindowCaptureSource,
-	data?: Partial<IWinWindowCaptureSource>
+	data?: Partial<IWinWindowCaptureSource>,
 ) {
 	const prox = SourceSuper(this, {
 		...defaultWinWindowSource,
@@ -68,11 +68,11 @@ const defaultMacWindowSource: IMacWindowCaptureSource = {
 	id: "window_capture",
 };
 
-interface MacWindowCaptureSource extends Source<IMacWindowCaptureSource> {}
+type MacWindowCaptureSource = Source<IMacWindowCaptureSource>;
 
 const MacWindowCaptureSource = function (
 	this: MacWindowCaptureSource,
-	data?: Partial<IMacWindowCaptureSource>
+	data?: Partial<IMacWindowCaptureSource>,
 ) {
 	const prox = SourceSuper(this, {
 		...defaultMacWindowSource,
@@ -110,11 +110,11 @@ const defaultXCompWindowSource: IXCompWindowCaptureSource = {
 	id: "xcomposite_input",
 };
 
-interface XCompWindowCaptureSource extends Source<IXCompWindowCaptureSource> {}
+type XCompWindowCaptureSource = Source<IXCompWindowCaptureSource>;
 
 const XCompWindowCaptureSource = function (
 	this: XCompWindowCaptureSource,
-	data?: Partial<IXCompWindowCaptureSource>
+	data?: Partial<IXCompWindowCaptureSource>,
 ) {
 	const prox = SourceSuper(this, {
 		...defaultXCompWindowSource,

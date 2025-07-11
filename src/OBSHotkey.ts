@@ -33,7 +33,7 @@ const Hotkey = function (this: Hotkey, data: Partial<IHotkey>) {
 	this.toJSON = () => rawData;
 
 	return createProxy(rawData, {
-		get: (_target: any, prop: string | symbol, _receiver: any) => {
+		get: (_target: any, prop: string | symbol) => {
 			if (prop in this) return this[prop as keyof Hotkey];
 			return rawData[prop as keyof IHotkey];
 		},

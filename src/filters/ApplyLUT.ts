@@ -18,11 +18,11 @@ const defaultApplyLUTFilter: IApplyLUTFilter = {
 	id: "clut_filter",
 };
 
-interface ApplyLUTFilter extends Filter<IApplyLUTFilter> {}
+type ApplyLUTFilter = Filter<IApplyLUTFilter>;
 
 const ApplyLUTFilter = function (
 	this: ApplyLUTFilter,
-	data?: Partial<IApplyLUTFilter>
+	data?: Partial<IApplyLUTFilter>,
 ) {
 	const prox = FilterSuper(this, {
 		...defaultApplyLUTFilter,

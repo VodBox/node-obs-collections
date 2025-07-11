@@ -20,7 +20,7 @@ import { VLCSource } from "./VLCVideoSource";
 import {
 	WinWindowCaptureSource,
 	XCompWindowCaptureSource,
-} from "./WIndowCapture";
+} from "./WindowCapture";
 import {
 	ALSAAudioInputCaptureSource,
 	MacAudioInputCaptureSource,

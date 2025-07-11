@@ -26,11 +26,11 @@ const defaultAJADeviceSource: IAJADeviceCaptureSource = {
 	id: "aja_source",
 };
 
-interface AJADeviceCaptureSource extends AudioSource<IAJADeviceCaptureSource> {}
+type AJADeviceCaptureSource = AudioSource<IAJADeviceCaptureSource>;
 
 const AJADeviceCaptureSource = function (
 	this: AJADeviceCaptureSource,
-	data?: Partial<IAJADeviceCaptureSource>
+	data?: Partial<IAJADeviceCaptureSource>,
 ) {
 	const prox = AudioSourceSuper(this, {
 		...defaultAJADeviceSource,

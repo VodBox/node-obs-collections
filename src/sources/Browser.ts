@@ -51,7 +51,7 @@ interface BrowserSource extends AudioSource<IBrowserSource> {
 
 const BrowserSource = function (
 	this: BrowserSource,
-	data?: Partial<IBrowserSource>
+	data?: Partial<IBrowserSource>,
 ) {
 	const prox = AudioSourceSuper(this, {
 		...defaultBrowserSource,

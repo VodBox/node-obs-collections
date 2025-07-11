@@ -3,7 +3,7 @@ interface ProxyCallbacks<T extends object> {
 		target: T,
 		prop: string | symbol,
 		value: any,
-		receiver: any
+		receiver: any,
 	) => boolean | undefined | void;
 	get?: (target: T, prop: string | symbol, receiver: any) => any;
 
@@ -12,13 +12,13 @@ interface ProxyCallbacks<T extends object> {
 
 export function createProxy<T extends object>(
 	target: T,
-	callbacks?: ProxyCallbacks<T>
+	callbacks?: ProxyCallbacks<T>,
 ) {
 	return new Proxy(target, createProxyHandler(callbacks));
 }
 
 export function createProxyHandler<T extends object>(
-	callbacks?: ProxyCallbacks<T>
+	callbacks?: ProxyCallbacks<T>,
 ): ProxyHandler<T> {
 	return {
 		get: (target, prop, receiver) => {

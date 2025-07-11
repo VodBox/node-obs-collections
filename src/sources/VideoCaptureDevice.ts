@@ -60,11 +60,11 @@ const defaultDShowSource: IDShowCaptureSource = {
 	id: "dshow_input",
 };
 
-interface DShowCaptureSource extends AudioSource<IDShowCaptureSource> {}
+type DShowCaptureSource = AudioSource<IDShowCaptureSource>;
 
 const DShowCaptureSource = function (
 	this: DShowCaptureSource,
-	data?: Partial<IDShowCaptureSource>
+	data?: Partial<IDShowCaptureSource>,
 ) {
 	const prox = AudioSourceSuper(this, {
 		...defaultDShowSource,
@@ -119,11 +119,11 @@ const defaultAVSource: IAVCaptureSource = {
 	id: "av_capture_input",
 };
 
-interface AVCaptureSource extends AudioSource<IAVCaptureSource> {}
+type AVCaptureSource = AudioSource<IAVCaptureSource>;
 
 const AVCaptureSource = function (
 	this: AVCaptureSource,
-	data?: Partial<IAVCaptureSource>
+	data?: Partial<IAVCaptureSource>,
 ) {
 	const prox = AudioSourceSuper(this, {
 		...defaultAVSource,
@@ -167,11 +167,11 @@ const defaultV4L2Source: IV4L2CaptureSource = {
 	id: "v4l2_input",
 };
 
-interface V4L2CaptureSource extends AudioSource<IV4L2CaptureSource> {}
+type V4L2CaptureSource = AudioSource<IV4L2CaptureSource>;
 
 const V4L2CaptureSource = function (
 	this: V4L2CaptureSource,
-	data?: Partial<IV4L2CaptureSource>
+	data?: Partial<IV4L2CaptureSource>,
 ) {
 	const prox = AudioSourceSuper(this, {
 		...defaultV4L2Source,
